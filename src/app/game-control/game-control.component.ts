@@ -16,7 +16,7 @@ export class GameControlComponent implements OnInit {
    * startGameButtonClick
    */
   public startGameButtonClick() {
-    console.log("Start button clicked");
+    console.log('Start button clicked');
   }
 
 }
