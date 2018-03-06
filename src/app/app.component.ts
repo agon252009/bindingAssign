@@ -8,7 +8,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   private readonly _numList: Array<number> = new Array();
 
+  public get numList(): Array<number> {
+    return this._numList;
+  }
+
   public onNumberGenerated(value: number): void {
-    console.log(value);
+    if (value === 1) {
+      this._numList.length = 0;
+    }
+
+    this._numList.push(value);
   }
 }

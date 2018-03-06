@@ -35,7 +35,7 @@ export class GameControlComponent implements OnInit {
     this._intervalRef = setInterval(() => {
                                      this._counter++;
                                      this.numberGenerated.emit(this._counter);
-                                    }, 1000);
+                                    }, 250);
   }
 
   stopCounter(): void {

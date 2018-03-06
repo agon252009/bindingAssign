@@ -21,4 +21,10 @@
     <app-game-control (numberGenerated)="onNumberGenerated($event)"></app-game-control>
    </div>
   </div>
+  <div class="row">
+    <div class="col-12" *ngFor="let num of numList">
+      <app-even *ngIf="num %2 === 0" [num]="num"></app-even>
+      <app-odd *ngIf="num %2 != 0" [num]="num"></app-odd>
+    </div>
+  </div>
 </div>
