@@ -5,13 +5,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   templateUrl: './game-control.component.html',
   styleUrls: ['./game-control.component.css']
 })
+
 export class GameControlComponent implements OnInit {
-  @Output()
-  gameStarted: EventEmitter<{}> = new EventEmitter();
-
-  @Output()
-  gameStopped: EventEmitter<{}> = new EventEmitter();
-
+  private counter: number;
+  private intervalRef: any;
   constructor() { }
 
   ngOnInit() {
@@ -21,10 +18,14 @@ export class GameControlComponent implements OnInit {
    * startGameButtonClick
    */
   public startGameButtonClicked(): void {
-    this.gameStarted.emit();
+    this.counter = 0;
+    this.intervalRef = setInterval(() => {
+                                     this.counter++;
+                                     console.log(this.counter);
+                                    }, 1000);
   }
 
   public stopGameButtonClicked(): void {
-    this.gameStopped.emit();
+    clearInterval(this.intervalRef);
   }
 }
