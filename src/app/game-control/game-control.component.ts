@@ -7,25 +7,42 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 
 export class GameControlComponent implements OnInit {
-  private counter: number;
-  private intervalRef: any;
+  private _counter: number;
+  private _intervalRef: any = null;
+
+  @Output()
+  public numberGenerated: EventEmitter<{}> = new EventEmitter<number>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  /**
-   * startGameButtonClick
-   */
   public startGameButtonClicked(): void {
-    this.counter = 0;
-    this.intervalRef = setInterval(() => {
-                                     this.counter++;
-                                     console.log(this.counter);
-                                    }, 1000);
+    this.startCounter();
   }
 
   public stopGameButtonClicked(): void {
-    clearInterval(this.intervalRef);
+    this.stopCounter();
+  }
+
+  private startCounter(): void {
+    if (this._intervalRef != null) {
+      this.stopCounter();
+    }
+
+    this._counter = 0;
+    this._intervalRef = setInterval(() => {
+                                     this._counter++;
+                                     this.numberGenerated.emit(this._counter);
+                                    }, 1000);
+  }
+
+  stopCounter(): void {
+    if (this._intervalRef == null) {
+      return;
+    }
+    clearInterval(this._intervalRef);
+    this._intervalRef = null;
   }
 }

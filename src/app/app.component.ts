@@ -6,12 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  private readonly _numList: Array<number> = new Array();
 
-  public onGameStarted(): void {
-    console.log('GameControl emitted game started');
-  }
-
-  public onGameStopped(): void {
-    console.log('GameControl emitted game stopped');
+  public onNumberGenerated(value: number): void {
+    console.log(value);
   }
 }
